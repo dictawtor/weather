@@ -1,0 +1,116 @@
+:root {
+    --color-primary : #4e0de5;
+    --color-secondery : #7da1f7;
+    --color-warning : #fae362;
+    --color-error : #f75e4b;
+
+}
+
+
+
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+body {
+  max-width: 1200px;
+  margin: auto;
+  animation: mori 100ms ease-out;
+
+}
+
+.search{
+    display: flex;
+    background: linear-gradient(150deg , var(--color-primary) 47%,
+    var(--color-secondery)100% ,
+    var(--color-error) 100% ,
+    var(--color-warning) 40%
+    );
+    align-items: center;
+    backdrop-filter: blur(33px);
+    box-shadow:rgb(3, 28, 138) 0 1px 25px 3px ;
+    justify-content: center;
+    height: 350px;
+    border-radius: 1px 1px 40px 40px;
+ 
+
+}
+#input{
+    border: none;
+    width: 290px;
+    height: 40px;
+    border-radius: 8px 0 0 8px;
+    align-items: center;
+    justify-content: center;
+    padding:  15px ;
+
+}
+#input:focus{
+    outline: none;
+    
+}
+
+button{
+    border: none;
+    background: var(--color-warning);
+    width:80px ;
+    height: 40px;
+    border-radius: 0px 8px 8px 0px  ;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 16px;
+    align-items: center;
+    /* padding:  20px auto; */
+}
+#card{
+    display: flex;
+    width: 320px;
+    height:170px;
+    /* background:url(/css/404.png); */
+    background-color: #cfebf75b ;
+     backdrop-filter: blur(33px);
+    background-size:contain;
+    background-repeat: no-repeat;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    position: absolute;
+    top: 280px;
+    /* left: 540px; */
+    border-radius:   18px   ;
+    transition: 1s ease-out;
+    /* animation: mori linear 6s infinite   ; */
+  
+}
+@keyframes mori {
+    0%{
+transform: translateY(9px);
+    }
+    45%{
+       transform: translateY(10px);
+    }
+    75%{
+       transform: translateY(30px);
+    }
+    100%{
+       transform: translateY(8px);
+    }
+
+    5%{
+transform: translateY(5px);
+    }
+    15%{
+       transform: translateY(10px);
+    }
+    35%{
+       transform: translateY(30px);
+    }
+    60%{
+       transform: translateY(20px);
+    }
+    
+}
