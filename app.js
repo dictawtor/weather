@@ -1,12 +1,12 @@
 const button = document.getElementById("btn");
 const input = document.getElementById("input");
-const card = document.getElementById("search");
+const card = document.querySelector(".container");
 const ApiKEY = "c52cd845c672f1dfcccfd2d2462105c9";
 const day1 = document.getElementById("day");
 
-const defaultCity = () => {
+const defaultCity = async () => {
   const URLd = `https://api.openweathermap.org/data/2.5/forecast?q=Tabriz&units=metric&appid=${ApiKEY}`;
-  const fetchData = async () => {
+  
     try {
       const data = await fetch(URLd);
 
@@ -14,33 +14,64 @@ const defaultCity = () => {
       const temp = Math.floor(fres.list[0].main.temp);
       const icon = fres.list[0].weather[0].icon;
       const jsxd = `
-        <div id="card">
-         <p>Tabriz</p>
+        <div class="card">
+         <p>${fres.city.name} , ${fres.city.country}</p>
         <div class="weatherimg">
-            <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="day">
-           
+            <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="day">  
         </div>
-         <div class="info">     <h1> temp: ${temp} °C   </h1>
-                <h1> Humidity:${fres.list[0].main.humidity}%</h1>  </div>
+        
+        <h1> ${fres.list[0].weather[0].main}</h1>
+         <div class="info">     <h1> ${temp} °C   </h1>
+                <h1> Humidity:${fres.list[0].main.humidity}%</h1>
+                  <h1> wind speed:${Math.round(fres.list[0].wind.speed)}m/s</h1> 
+                  </div>
              
                 
             </div>
     </div>
        `;
-      return (search.innerHTML = jsxd);
+        const dayJsxArray = fres.list.filter((obj)=> obj.dt_txt.endsWith("12:00:00"))
+      
+  const days = ["یکشنبه","دوشنبه","سه شنبه","چهارشنبه","پنج شنبه","جمعه","شنبه"];
+
+      dayJsxArray.forEach((i) => {
+        const dayJsx = `
+      <div class="days">
+       
+        <div class="weatherimg">
+            <img src="https://openweathermap.org/img/wn/${i.weather[0].icon}@2x.png" alt="day">  
+        </div>
+         <div class="info1">  
+            <p>${days[new Date(i.dt * 1000).getDay()]}</p>  
+            <h1> ${Math.floor(i.main.temp)} °C   </h1>
+            <h2> ${i.weather[0].main}</h2> 
+         </div>
+         
+    </div>
+       `;
+       day1.innerHTML += dayJsx
+      });
+      return (day1.innerHTML += jsxd   );
     } catch (error) {
-      search.innerHTML += `<p id="card" style="color: red;
-    font-size: 15px">Error: Unable to fetch weather data. Please check the city name and try again.</p>`;
-      console.log(error);
+      day1.innerHTML += `<p class="cardErr">Error: Unable to fetch weather data. Please  try again.</p>`;
+  
     }
-  };
-  fetchData();
+  
+  
 };
 
-const inputEl = () => {
-  let task = input.value;
+const inputEl = async() => {
+
+
+  const days = ["یکشنبه","دوشنبه","سه شنبه","چهارشنبه","پنج شنبه","جمعه","شنبه"];
+
+ 
+
+  day1.innerHTML = "";
+  let task =input.value.trim();
+  if (!task) return;
   const URL = `https://api.openweathermap.org/data/2.5/forecast?q=${task}&units=metric&exclude=hourly&appid=${ApiKEY}`;
-  const fetchData = async () => {
+  
     try {
       const data = await fetch(URL);
 
@@ -48,55 +79,55 @@ const inputEl = () => {
       const temp = Math.floor(fres.list[0].main.temp);
       const icon = fres.list[0].weather[0].icon;
 
-      console.log(fres);
+      
       const dayJsxArray = fres.list.filter((obj)=> obj.dt_txt.endsWith("12:00:00"))
-      console.log(dayJsxArray);
+    
 
       dayJsxArray.forEach((i) => {
         const dayJsx = `
-        <div id="days">
-         <p>${task}</p>
+      <div class="days">
+       
         <div class="weatherimg">
-            <img src="https://openweathermap.org/img/wn/${i.weather[0].icon}@2x.png" alt="day">
-            
-           
+            <img src="https://openweathermap.org/img/wn/${i.weather[0].icon}@2x.png" alt="day">  
         </div>
-         <div class="info1">  <p>${new Date(i.dt *1000).getDay()}</p>   <h1> temp: ${Math.floor(i.main.temp)} °C   </h1>
-                <h1> Humidity:${i.main.humidity}%</h1>  </div>
-             
-                
-            </div>
+         <div class="info1">  
+            <p>${days[new Date(i.dt * 1000).getDay()]}</p>  
+            <h1> ${Math.floor(i.main.temp)} °C   </h1>
+            <h2> ${i.weather[0].main}</h2> 
+         </div>
+         
     </div>
        `;
         day1.innerHTML += dayJsx;
       });
 
-      console.log(fres);
+    
 
       const jsx = `
-        <div id="card">
-         <p>${task}</p>
+        <div class="card">
+          <p>${fres.city.name} , ${fres.city.country}</p>
         <div class="weatherimg">
-            <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="day">
-           
+            <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="day"> 
         </div>
-         <div class="info">     <h1> temp: ${temp} °C   </h1>
-                <h1> Humidity:${fres.list[0].main.humidity}%</h1>  </div>
+        <h1> ${fres.list[0].weather[0].main}</h1>
+         <div class="info">     <h1>  ${temp} °C   </h1>
+                <h1> Humidity:${fres.list[0].main.humidity}%</h1>  
+                <h1> wind speed:${Math.round(fres.list[0].wind.speed)}m/s</h1> </div>
              
                 
             </div>
     </div>
        `;
-      return (search.innerHTML += jsx);
+      return (day1.innerHTML += jsx);
     } catch (error) {
-      search.innerHTML = `<p id="card" >Error: Unable to fetch weather data. Please  try again.</p>`;
-      console.log(error);
+      day1.innerHTML = `<p id="card" >Error: Unable to fetch weather data. Please  try again.</p>`;
+      
     }
-  };
-  fetchData();
-};
+  
+  
+}
 
-window.addEventListener("loadeddata", defaultCity);
+
 
 button.addEventListener("click", inputEl);
-win
+window.addEventListener("DOMContentLoaded", defaultCity);
