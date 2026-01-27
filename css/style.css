@@ -1,116 +1,162 @@
 :root {
-    --color-primary : #4e0de5;
-    --color-secondery : #7da1f7;
-    --color-warning : #fae362;
-    --color-error : #f75e4b;
+    --color-primary: #4e0de5;
+    --color-secondery: #7da1f7;
+    --color-warning: #fae362;
+    --color-error: #f75e4b;
 
 }
 
-
-
-
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 
 body {
-  max-width: 1200px;
-  margin: auto;
-  animation: mori 100ms ease-out;
-
+    background-color: antiquewhite;
+    max-width: 1200px;
+    margin: auto;
+    animation: mori 100ms ease-out;
 }
 
-.search{
+#search {
     display: flex;
-    background: linear-gradient(150deg , var(--color-primary) 47%,
-    var(--color-secondery)100% ,
-    var(--color-error) 100% ,
-    var(--color-warning) 40%
-    );
+    background: linear-gradient(150deg, var(--color-primary) 47%,
+            var(--color-secondery)100%,
+            var(--color-error) 100%,
+            var(--color-warning) 40%);
     align-items: center;
     backdrop-filter: blur(33px);
-    box-shadow:rgb(3, 28, 138) 0 1px 25px 3px ;
+    box-shadow: rgb(3, 28, 138) 0 1px 25px 3px;
     justify-content: center;
     height: 350px;
     border-radius: 1px 1px 40px 40px;
- 
-
 }
-#input{
+
+#input {
     border: none;
     width: 290px;
     height: 40px;
     border-radius: 8px 0 0 8px;
     align-items: center;
     justify-content: center;
-    padding:  15px ;
-
+    padding: 15px;
 }
-#input:focus{
+
+#input:focus {
     outline: none;
-    
 }
 
-button{
+button {
     border: none;
     background: var(--color-warning);
-    width:80px ;
+    width: 80px;
     height: 40px;
-    border-radius: 0px 8px 8px 0px  ;
+    border-radius: 0px 8px 8px 0px;
     cursor: pointer;
     font-weight: bold;
     font-size: 16px;
     align-items: center;
-    /* padding:  20px auto; */
+   
 }
-#card{
+
+#card {
     display: flex;
-    width: 320px;
-    height:170px;
-    /* background:url(/css/404.png); */
-    background-color: #cfebf75b ;
-     backdrop-filter: blur(33px);
-    background-size:contain;
-    background-repeat: no-repeat;
+    width: 360px;
+    height: 190px;
+    font-size: 8px;
+    flex-direction: column;
+    background-color: #cbf4fa83;
+    backdrop-filter: blur(33px);
     align-items: center;
     align-content: center;
-    justify-content: center;
     position: absolute;
-    top: 280px;
-    /* left: 540px; */
-    border-radius:   18px   ;
+    top: 230px;
+    box-shadow: #000000b6 0px 0px  17px  -1px , 
+        #5019cf50  0px 11px 19px -11px;
+    border-radius: 18px;
     transition: 1s ease-out;
-    /* animation: mori linear 6s infinite   ; */
-  
 }
+
+.weatherimg {
+    animation: mori linear 2s infinite;
+}
+
+#card p {
+    font-size: 25px;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding-left: 15px;
+}
+
+.info {
+    display: flex;
+    margin: 10px;
+    flex-direction: row;
+    align-items: center;
+    gap: 90px;
+    justify-content: space-between;
+}
+
+#days {
+    display: flex;
+    align-items: center;
+    background-color: #70ccf059;
+    width: 150px;
+    height: 300px;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+    justify-content: center;
+    margin-top: 170px;
+    font-size: 10px;
+    margin: 90px 5px 2px 0px;
+    border-radius: 10px;
+}
+
+#day {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    overflow: hidden;
+    flex-direction: row;
+    width: 100%;
+}
+
+
+
+
+
+
 @keyframes mori {
-    0%{
-transform: translateY(9px);
-    }
-    45%{
-       transform: translateY(10px);
-    }
-    75%{
-       transform: translateY(30px);
-    }
-    100%{
-       transform: translateY(8px);
+    0% {
+        transform: translateY(1px);
     }
 
-    5%{
-transform: translateY(5px);
+    45% {
+        transform: translateY(8px);
     }
-    15%{
-       transform: translateY(10px);
+
+    75% {
+        transform: translateY(6px);
     }
-    35%{
-       transform: translateY(30px);
+
+    100% {
+        transform: translateY(2px);
     }
-    60%{
-       transform: translateY(20px);
+
+    5% {
+        transform: translateY(2px);
     }
-    
+
+    15% {
+        transform: translateY(4px);
+    }
+
+    35% {
+        transform: translateY(6px);
+    }
+
+
 }
