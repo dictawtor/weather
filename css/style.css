@@ -3,7 +3,6 @@
     --color-secondery: #7da1f7;
     --color-warning: #fae362;
     --color-error: #f75e4b;
-
 }
 
 * {
@@ -11,19 +10,39 @@
     margin: 0;
     box-sizing: border-box;
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+     
 }
 
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(235, 237, 250);
     max-width: 1200px;
     margin: auto;
     animation: mori 100ms ease-out;
+    scroll-behavior: smooth;
 }
+.loader{
+    width: 100px;
+    height: 100px;
+    animation: spin 1.5s  linear infinite;
+    border: #3a8dfa solid 3px;
 
+    border-radius: 50%;
+    transition: 5s ease-out;
+    z-index: 10;
+  border-top-color: transparent;
+   border-bottom-color: transparent;
+    
+   
+    
+
+
+
+}
 .container {
     display: flex;
-    background: linear-gradient(150deg, var(--color-primary) 47%,
-            var(--color-secondery)100%,
+    background: linear-gradient(150deg,
+            var(--color-primary) 47%,
+            var(--color-secondery) 100%,
             var(--color-error) 100%,
             var(--color-warning) 40%);
     align-items: center;
@@ -31,10 +50,17 @@ body {
     box-shadow: rgb(3, 28, 138) 0 1px 25px 3px;
     justify-content: center;
     height: 340px;
-   
+ 
+
     border-radius: 1px 1px 40px 40px;
 }
 
+.container img{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 10px;
+}
 #input {
     border: none;
     width: 290px;
@@ -43,7 +69,6 @@ body {
     align-items: center;
     justify-content: center;
     padding: 10px;
-
 }
 
 #input:focus {
@@ -60,65 +85,73 @@ button {
     font-weight: bold;
     font-size: 16px;
     align-items: center;
-   
 }
-
+button:hover {
+    background: #fabc3a;
+}
 .card {
     display: flex;
     width: 370px;
     height: 220px;
     font-size: 8px;
     flex-direction: column;
-    background-color: #ffffffcb;
+    background-color: #ffffff;
     backdrop-filter: blur(33px);
     align-items: center;
     align-content: center;
     position: absolute;
     /* padding: 1px; */
-    
+
     top: 260px;
-    box-shadow: #000000b6 0px 0px  17px  -1px , 
-        #5019cf50  0px 11px 19px -11px;
+    box-shadow:
+        #000000b6 0px 0px 17px -1px,
+        #5019cf50 0px 11px 19px -11px;
     border-radius: 18px;
+
     transition: 1s ease-out;
 }
- .cardErr{
+
+.cardErr {
     background-color: var(--color-error);
     display: flex;
     width: 300px;
     height: 100px;
     color: #ffffff;
     padding: 10px;
-   
+
     align-items: center;
     justify-content: center;
     border-radius: 10px;
     transition: all 2 ease-in-out;
-} 
-.weatherimg:first {
-    animation: mori linear 2s infinite;
 }
-h1{
+
+.weatherimg img {
+    
+   filter: drop-shadow(  2px 3px 3px  #000000cc) ;
+         
+}
+
+h1 {
     padding: 10px;
 }
+
 .card p {
     font-size: 20px;
     align-items: center;
     justify-content: center;
     color: #0f12c0cb;
     font-weight: 900;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: Georgia, "Times New Roman", Times, serif;
     padding-top: 7px;
-    
 }
 
 .info {
     display: flex;
     color: #4e0de5;
     padding: 5px;
-  
+
     align-items: center;
-   
+
     justify-content: space-between;
     width: 100%;
 }
@@ -132,13 +165,14 @@ h1{
     flex-direction: column;
     backdrop-filter: blur(5px);
     justify-content: center;
-  
+
     font-size: 10px;
     margin: 14px 5px 3px 0;
     border-radius: 10px;
-    box-shadow: #0301084f 3px 5px 9px 3px ;
+    box-shadow: #0301084f 3px 5px 9px 3px;
 }
-.info1{
+
+.info1 {
     display: flex;
     flex-direction: column;
     font-size: 13px;
@@ -148,11 +182,13 @@ h1{
     align-items: center;
     margin: 35px;
 }
-.info1 p{
+
+.info1 p {
     font-size: 25px;
-    
 }
-.info1 h1 ,h2{
+
+.info1 h1,
+h2 {
     margin: 8px;
     width: fit-content;
     color: rgb(0, 0, 0);
@@ -168,40 +204,36 @@ h1{
     height: 110%;
     margin: 160px 0;
 }
+@keyframes spin{
+    0%{
+        transform: rotate(1deg);
+        border: #fa3a3a dashed 3px;
+        border-top-color: transparent;
+   border-bottom-color: transparent;
+   border-right-color: transparent;
+   border-left-color: transparent;
+         
 
-
-
-
-
-
-@keyframes mori {
-    0% {
-        transform: translateY(1px);
+    }30%{
+        transform: rotate(200deg);
+        border: #8400db dashed 3px;
+        
+   border-bottom-color: transparent;
+   border-right-color: transparent;
+      
+ 
+    }60%{
+        transform: rotate(290deg);
+        border: #2a05ff dashed 3px;
+     border-bottom-color: transparent;
+    
+   
+       
+    }100%{
+        transform: rotate(360deg);
+        border: #362cc5 dashed 3px;
+       
+       
     }
-
-    45% {
-        transform: translateY(8px);
-    }
-
-    75% {
-        transform: translateY(6px);
-    }
-
-    100% {
-        transform: translateY(2px);
-    }
-
-    5% {
-        transform: translateY(2px);
-    }
-
-    15% {
-        transform: translateY(4px);
-    }
-
-    35% {
-        transform: translateY(6px);
-    }
-
-
 }
+
